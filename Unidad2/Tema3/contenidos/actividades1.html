@@ -3,173 +3,223 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Actividad: Planificación del Aprendizaje</title>
+<title>Actividad: Evaluación del Progreso en el Aprendizaje</title>
 <style>
   :root{
-    --bg:#f3f4f6; --card:#ffffff; --ink:#1f2937; --muted:#4b5563;
-    --accent:#2563eb; --bad:#dc2626; --good:#059669;
+    --bg:#f8fafc; --card:#ffffff; --ink:#0f172a; --muted:#64748b;
+    --accent:#2563eb; --good:#16a34a; --bad:#dc2626;
   }
-  body{margin:0; background:var(--bg); font-family:system-ui; color:var(--ink);}
-  .wrap{max-width:920px; margin:24px auto; padding:24px;}
-  .hero{background:var(--card); border:1px solid #e5e7eb; padding:24px;
-    border-radius:16px; box-shadow:0 6px 20px rgba(0,0,0,.05);}
-  h1{margin:0 0 6px; font-size:clamp(22px,3vw,28px);}
-  .sub{color:var(--muted); margin:0 0 12px; font-size:14px}
-  .badge{display:inline-block; background:var(--accent); color:white;
-    padding:4px 10px; border-radius:999px; font-size:12px;}
-  .quiz{margin-top:16px; display:grid; gap:16px;}
-  .q{background:#f9fafb; border:1px solid #e5e7eb; border-radius:14px; padding:18px;}
-  .q h3{margin:0 0 10px; font-size:18px;}
-  .opts{display:grid; gap:8px; margin-top:6px}
-  .opt{display:flex; gap:10px; align-items:flex-start; padding:10px 12px;
-    border-radius:10px; border:1px solid #e5e7eb; background:white; cursor:pointer;}
-  .opt:hover{border-color:var(--accent); background:#eff6ff}
-  .feedback{display:none; margin-top:10px; font-size:14px; line-height:1.4; padding:10px 12px; border-radius:10px;}
-  .feedback.ok{background:#dcfce7; border:1px solid #86efac; color:var(--good)}
-  .feedback.bad{background:#fee2e2; border:1px solid #fca5a5; color:var(--bad)}
-  .actions{display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;}
-  button{appearance:none; border:none; cursor:pointer; padding:12px 16px;
-    border-radius:12px; font-weight:600; background:var(--accent); color:white;}
-  button.secondary{background:#f3f4f6; color:var(--ink); border:1px solid #d1d5db;}
-  .score{margin-top:14px; font-weight:700; font-size:16px;}
-  .mark{display:inline-block; margin-left:8px; padding:2px 8px; border-radius:999px; font-size:12px; font-weight:700;}
-  .mark.ok{background:#dcfce7; color:var(--good)}
-  .mark.bad{background:#fee2e2; color:var(--bad)}
+  body{
+    margin:0; font-family:Inter, system-ui, Arial;
+    background:linear-gradient(180deg,#eef6ff 0%, #f8fafc 100%);
+    color:var(--ink); padding:24px;
+  }
+  .container{max-width:940px; margin:0 auto;}
+  .card{background:var(--card); border-radius:16px; padding:24px; box-shadow:0 8px 24px rgba(0,0,0,.08);}
+  h1{font-size:22px; color:var(--accent); margin-bottom:10px;}
+  .lead{color:var(--muted); font-size:14px; margin-bottom:20px;}
+  .q{margin-bottom:30px;}
+  .q h3{font-size:16px; margin-bottom:10px;}
+  .dropzone{
+    min-height:46px; border:2px dashed #cbd5e1; border-radius:10px; padding:10px;
+    display:flex; align-items:center; justify-content:center;
+    background:#f1f5f9; margin-bottom:12px; transition:all .25s ease;
+  }
+  .dropzone.filled{background:#ecfdf5; border-color:#34d399;}
+  .option{
+    display:inline-block; background:#fff; border:1px solid #cbd5e1; padding:8px 12px;
+    border-radius:8px; margin:4px; cursor:grab; font-size:14px;
+    box-shadow:0 2px 6px rgba(0,0,0,.08); transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .option:hover{transform:scale(1.05); box-shadow:0 4px 12px rgba(0,0,0,.15);}
+  .feedback{margin-top:6px; font-size:14px; display:none;}
+  .feedback.ok{color:var(--good); display:block; font-weight:600;}
+  .feedback.bad{color:var(--bad); display:block; font-weight:600;}
+  input[type="text"]{padding:6px; border-radius:8px; border:1px solid #cbd5e1; width:60%;}
+  .controls{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;}
+  button{padding:10px 16px; border:none; border-radius:8px; cursor:pointer; font-weight:700; color:#fff; background:var(--accent);}
+  button.secondary{background:#e2e8f0; color:var(--ink);}
+  #result{font-weight:800; margin-left:auto;}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="hero">
-    <span class="badge">Actividad</span>
-    <h1>Planificación del Aprendizaje</h1>
-    <p class="sub">Responde las siguientes 5 preguntas seleccionando la respuesta correcta.</p>
+<div class="container">
+  <div class="card">
+    <h1>Actividad: Evaluación del Progreso en el Aprendizaje</h1>
+    <div class="lead">Pon a prueba tus conocimientos sobre la evaluación del progreso con diferentes tipos de preguntas.</div>
 
-    <form id="quiz1" class="quiz1">
-
-<!-- P1 -->
-<div class="q" data-correct="c" data-explain="La planificación consiste en definir qué aprender, cómo hacerlo y cómo evaluar los logros.">
-  <h3>1) ¿Cuál es el propósito principal de la planificación del aprendizaje?</h3>
-  <div class="opts">
-    <label class="opt"><input type="radio" name="q1" value="a"> Memorizar contenidos sin reflexionar.</label>
-    <label class="opt"><input type="radio" name="q1" value="b"> Reducir el tiempo de estudio sin medir resultados.</label>
-    <label class="opt"><input type="radio" name="q1" value="c"> Definir qué se desea aprender, cómo hacerlo y cómo evaluar los logros.</label>
-    <label class="opt"><input type="radio" name="q1" value="d"> Estudiar sin establecer prioridades.</label>
-  </div>
-  <div class="feedback"></div>
-</div>
-
-<!-- P2 -->
-<div class="q" data-correct="a" data-explain="El diagnóstico inicial busca identificar fortalezas y debilidades antes de iniciar el plan.">
-  <h3>2) Verdadero o Falso: El diagnóstico inicial consiste en identificar fortalezas y debilidades antes de comenzar un plan de aprendizaje.</h3>
-  <div class="opts">
-    <label class="opt"><input type="radio" name="q2" value="a"> Verdadero</label>
-    <label class="opt"><input type="radio" name="q2" value="b"> Falso</label>
-  </div>
-  <div class="feedback"></div>
-</div>
-
-<!-- P3 -->
-<div class="q" data-correct="b" data-explain="Un objetivo SMART debe ser específico, medible, alcanzable, relevante y temporalizado.">
-  <h3>3) ¿Cuál de estas opciones corresponde a un objetivo SMART?</h3>
-  <div class="opts">
-    <label class="opt"><input type="radio" name="q3" value="a"> “Voy a estudiar más cuando tenga tiempo libre.”</label>
-    <label class="opt"><input type="radio" name="q3" value="b"> “Aprenderé programación web en dos meses dedicando 2 horas diarias.”</label>
-    <label class="opt"><input type="radio" name="q3" value="c"> “Mejoraré en matemáticas algún día.”</label>
-    <label class="opt"><input type="radio" name="q3" value="d"> “Estudiar lo que pueda, sin plan fijo.”</label>
-  </div>
-  <div class="feedback"></div>
-</div>
-
-<!-- P4 -->
-<div class="q" data-correct="c" data-explain="La gestión del tiempo implica el uso de calendarios, agendas y listas de tareas.">
-  <h3>4) ¿Qué estrategia de planificación se relaciona con el uso de calendarios, agendas y listas de tareas?</h3>
-  <div class="opts">
-    <label class="opt"><input type="radio" name="q4" value="a"> Selección adecuada de recursos.</label>
-    <label class="opt"><input type="radio" name="q4" value="b"> Priorización de tareas.</label>
-    <label class="opt"><input type="radio" name="q4" value="c"> Gestión del tiempo.</label>
-    <label class="opt"><input type="radio" name="q4" value="d"> Diseño del ambiente de aprendizaje.</label>
-  </div>
-  <div class="feedback"></div>
-</div>
-
-<!-- P5 -->
-<div class="q" data-correct="d" data-explain="El diseño de un ambiente de aprendizaje óptimo implica crear un espacio físico y virtual libre de distracciones.">
-  <h3>5) ¿Qué estrategia consiste en crear un espacio libre de distracciones y con recursos adecuados?</h3>
-  <div class="opts">
-    <label class="opt"><input type="radio" name="q5" value="a"> Establecimiento de objetivos SMART.</label>
-    <label class="opt"><input type="radio" name="q5" value="b"> Priorización de tareas.</label>
-    <label class="opt"><input type="radio" name="q5" value="c"> Resolución de problemas.</label>
-    <label class="opt"><input type="radio" name="q5" value="d"> Diseño de un ambiente de aprendizaje óptimo.</label>
-  </div>
-  <div class="feedback"></div>
-</div>
-
-      <div class="actions">
-        <button type="button" id="grade">Calificar</button>
-        <button type="button" class="secondary" id="reset">Reiniciar</button>
-        <span id="score" class="score muted"></span>
+    <!-- Arrastrar y soltar -->
+    <div class="q" data-answer="Evaluación formativa">
+      <h3>1) Tipo de evaluación que se realiza durante el proceso de aprendizaje, no solo al final:</h3>
+      <div class="dropzone"></div>
+      <div id="opts1">
+        <div class="option" draggable="true">Evaluación formativa</div>
+        <div class="option" draggable="true">Evaluación sumativa</div>
       </div>
-    </form>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q" data-answer="Autorregulación">
+      <h3>2) Capacidad del estudiante para controlar, monitorear y ajustar su propio aprendizaje:</h3>
+      <div class="dropzone"></div>
+      <div id="opts2">
+        <div class="option" draggable="true">Evaluación externa</div>
+        <div class="option" draggable="true">Autorregulación</div>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <!-- Verdadero o falso -->
+    <div class="q" data-answer="Verdadero">
+      <h3>3) La evaluación del progreso ayuda a identificar fortalezas y debilidades en tiempo real.</h3>
+      <label><input type="radio" name="vf3" value="Verdadero"> Verdadero</label>
+      <label><input type="radio" name="vf3" value="Falso"> Falso</label>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q" data-answer="Falso">
+      <h3>4) La evaluación del progreso se enfoca únicamente en calificar productos finales.</h3>
+      <label><input type="radio" name="vf4" value="Verdadero"> Verdadero</label>
+      <label><input type="radio" name="vf4" value="Falso"> Falso</label>
+      <div class="feedback"></div>
+    </div>
+
+    <!-- Completar -->
+    <div class="q" data-answer="pensamiento crítico">
+      <h3>5) La evaluación del progreso estimula el ____________, ya que exige analizar y reflexionar sobre el propio desempeño.</h3>
+      <input type="text" placeholder="Escribe tu respuesta aquí">
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q" data-answer="portafolio de evidencias">
+      <h3>6) El ____________ permite reunir trabajos, proyectos y reflexiones para analizar la evolución del aprendizaje.</h3>
+      <input type="text" placeholder="Escribe tu respuesta aquí">
+      <div class="feedback"></div>
+    </div>
+
+    <!-- Más arrastrar y soltar -->
+    <div class="q" data-answer="Rúbricas de desempeño">
+      <h3>7) Instrumento que describe niveles de logro y facilita la evaluación objetiva:</h3>
+      <div class="dropzone"></div>
+      <div id="opts7">
+        <div class="option" draggable="true">Autoevaluación</div>
+        <div class="option" draggable="true">Rúbricas de desempeño</div>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="q" data-answer="Evaluación entre pares">
+      <h3>8) Estrategia donde los compañeros dan retroalimentación constructiva sobre sus trabajos:</h3>
+      <div class="dropzone"></div>
+      <div id="opts8">
+        <div class="option" draggable="true">Evaluación entre pares</div>
+        <div class="option" draggable="true">Entrevista reflexiva</div>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <!-- Verdadero o falso -->
+    <div class="q" data-answer="Verdadero">
+      <h3>9) Una buena evaluación del progreso debe ser continua, reflexiva y constructiva.</h3>
+      <label><input type="radio" name="vf9" value="Verdadero"> Verdadero</label>
+      <label><input type="radio" name="vf9" value="Falso"> Falso</label>
+      <div class="feedback"></div>
+    </div>
+
+    <!-- Completar -->
+    <div class="q" data-answer="metas de aprendizaje">
+      <h3>10) Plantear ____________ claras y medibles permite al estudiante saber hacia dónde dirigir sus esfuerzos.</h3>
+      <input type="text" placeholder="Escribe tu respuesta aquí">
+      <div class="feedback"></div>
+    </div>
+
+    <!-- Controles -->
+    <div class="controls">
+      <button id="checkBtn">Calificar</button>
+      <button class="secondary" id="resetBtn">Reiniciar</button>
+      <div id="result"></div>
+    </div>
   </div>
 </div>
 
 <script>
-(function(){
-  const quiz1 = document.getElementById('quiz1');
-  const gradeBtn = document.getElementById('grade');
-  const resetBtn = document.getElementById('reset');
-  const scoreEl = document.getElementById('score');
+  let dragged = null;
 
-  function grade(){
-    const questions = quiz1.querySelectorAll('.q');
-    let correct = 0, graded = 0;
-    questions.forEach((q, idx)=>{
-      const correctVal = q.getAttribute('data-correct');
-      const name = 'q' + (idx+1);
-      const sel = quiz1.querySelector('input[name="'+name+'"]:checked');
-      const fb  = q.querySelector('.feedback');
-      const explain = q.getAttribute('data-explain') || '';
-      
-      fb.classList.remove('ok','bad');
-      fb.style.display = 'block';
-      const oldMark = q.querySelector('.mark');
-      if(oldMark){ oldMark.remove(); }
-      
-      if(sel && sel.value === correctVal){
-        correct++;
-        fb.classList.add('ok');
-        fb.textContent = '✅ ¡Correcto! ' + explain;
-        const chip = document.createElement('span');
-        chip.className = 'mark ok';
-        chip.textContent = '✓';
-        q.querySelector('h3').appendChild(chip);
-      }else{
-        fb.classList.add('bad');
-        fb.textContent = '❌ Incorrecto. ' + explain;
-        const chip = document.createElement('span');
-        chip.className = 'mark bad';
-        chip.textContent = '×';
-        q.querySelector('h3').appendChild(chip);
+  function setDragEvents(){
+    const options = document.querySelectorAll('.option');
+    options.forEach(opt=>{
+      opt.addEventListener('dragstart', e=>{
+        dragged = opt;
+        setTimeout(()=> opt.style.display='none',0);
+      });
+      opt.addEventListener('dragend', e=>{
+        dragged.style.display='inline-block';
+        dragged = null;
+      });
+    });
+  }
+  setDragEvents();
+
+  const dropzones = document.querySelectorAll('.dropzone');
+  dropzones.forEach(zone=>{
+    zone.addEventListener('dragover', e=> e.preventDefault());
+    zone.addEventListener('drop', e=>{
+      e.preventDefault();
+      if(zone.children.length===0 && dragged){
+        zone.appendChild(dragged);
+        zone.classList.add('filled');
       }
-      graded++;
     });
-    scoreEl.textContent = 'Puntuación: ' + correct + ' / ' + graded + ' (' + Math.round(correct*100/graded) + '%)';
-  }
+  });
 
-  function resetQuiz1(){
-    quiz1.reset();
-    scoreEl.textContent = '';
-    quiz1.querySelectorAll('.feedback').forEach(fb=>{
-      fb.style.display = 'none';
-      fb.classList.remove('ok','bad');
-      fb.textContent = '';
+  document.getElementById('checkBtn').addEventListener('click', ()=>{
+    let correct=0;
+    const qs=document.querySelectorAll('.q');
+    qs.forEach(q=>{
+      const ans=q.dataset.answer.trim().toLowerCase();
+      const fb=q.querySelector('.feedback');
+      fb.classList.remove('ok','bad'); fb.style.display='none';
+      let userAns='';
+
+      // Drag & drop
+      const dropped=q.querySelector('.dropzone .option');
+      if(dropped){ userAns=dropped.textContent.trim().toLowerCase(); }
+
+      // Verdadero/Falso
+      const selected=q.querySelector('input[type="radio"]:checked');
+      if(selected){ userAns=selected.value.trim().toLowerCase(); }
+
+      // Completar
+      const input=q.querySelector('input[type="text"]');
+      if(input){ userAns=input.value.trim().toLowerCase(); }
+
+      if(userAns){
+        if(userAns===ans){
+          fb.textContent="✅ Correcto"; fb.classList.add('ok');
+          correct++;
+        }else{
+          fb.textContent="❌ Incorrecto. Respuesta correcta: "+q.dataset.answer;
+          fb.classList.add('bad');
+        }
+      }else{
+        fb.textContent="⚠️ No respondiste esta pregunta.";
+        fb.classList.add('bad');
+      }
+      fb.style.display='block';
     });
-    quiz1.querySelectorAll('.mark').forEach(m=>m.remove());
-  }
+    const total=qs.length;
+    const pct=Math.round((correct/total)*100);
+    document.getElementById('result').textContent=`Puntuación: ${correct}/${total} — ${pct}%`;
+  });
 
-  gradeBtn.addEventListener('click', grade);
-  resetBtn.addEventListener('click', resetQuiz1);
-})();
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    document.querySelectorAll('.dropzone').forEach(z=>{z.innerHTML=''; z.classList.remove('filled');});
+    document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+    document.querySelectorAll('input[type="text"]').forEach(i=>i.value='');
+    document.querySelectorAll('.feedback').forEach(f=>{f.textContent=''; f.style.display='none';});
+    document.getElementById('result').textContent='';
+    setDragEvents();
+  });
 </script>
 </body>
 </html>
