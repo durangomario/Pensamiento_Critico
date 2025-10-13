@@ -1,181 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Examen: Planificación del Aprendizaje</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f4f4; }
-    h1 { text-align: center; color: #333; }
-    .quiz { background: #fff; padding: 20px; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    .q { margin-bottom: 20px; }
-    .q h3 { margin-bottom: 10px; color: #444; }
-    .opts label { display: block; margin-bottom: 8px; cursor: pointer; }
-    .feedback { margin-top: 8px; font-weight: bold; }
-    .correct { color: green; }
-    .incorrect { color: red; }
-    .actions { text-align: center; margin-top: 20px; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; border: none; border-radius: 5px; background: #333; color: #fff; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Autoevaluación: Evaluación del Progreso en el Aprendizaje</title>
+<style>
+:root{
+  --bg:#f8fafc; --card:#ffffff; --ink:#0f172a; --muted:#64748b;
+  --accent:#2563eb; --good:#16a34a; --bad:#dc2626;
+}
+body{
+  margin:0; font-family:Inter,system-ui,Arial;
+  background:linear-gradient(180deg,#eef6ff 0%, #f8fafc 100%);
+  color:var(--ink); padding:24px;
+}
+.container{max-width:940px; margin:0 auto;}
+.card{
+  background:var(--card); border-radius:16px;
+  padding:24px; box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+h1{font-size:22px; color:var(--accent); margin-bottom:10px;}
+.lead{color:var(--muted); font-size:14px; margin-bottom:20px;}
+.q{margin-bottom:25px;}
+.q h3{font-size:16px; margin-bottom:8px;}
+.q label{display:block; margin-bottom:6px; cursor:pointer;}
+.q input[type="text"]{
+  width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:8px;
+  font-family:inherit;
+}
+button{
+  padding:10px 16px; border:none; border-radius:8px; cursor:pointer;
+  font-weight:700; color:#fff; background:var(--accent);
+}
+button.secondary{background:#e2e8f0; color:var(--ink);}
+.feedback{margin-top:10px; font-weight:600; display:none;}
+.feedback.ok{color:var(--good); display:block;}
+.feedback.bad{color:var(--bad); display:block;}
+#result{font-weight:700; margin-top:20px;}
+</style>
 </head>
 <body>
-  <h1>Examen: Planificación del Aprendizaje</h1>
-  <div class="quiz">
+<div class="container">
+  <div class="card">
+    <h1>Autoevaluación: Evaluación del Progreso en el Aprendizaje</h1>
+    <div class="lead">Responde las siguientes preguntas. Al final recibirás tu calificación y retroalimentación.</div>
 
-    <!-- P1 -->
-    <div class="q" data-correct="b" data-explain="La planificación del aprendizaje es el proceso en el que el estudiante define qué quiere aprender, cómo hacerlo y cómo medir los resultados.">
-      <h3>1) ¿Qué es la planificación del aprendizaje?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q1" value="a"> Es únicamente la memorización de contenidos.</label>
-        <label><input type="radio" name="q1" value="b"> Es el proceso de definir objetivos, estrategias y recursos para aprender de manera autónoma.</label>
-        <label><input type="radio" name="q1" value="c"> Es solo una lista de tareas pendientes.</label>
-        <label><input type="radio" name="q1" value="d"> Es depender del docente para guiar todo el aprendizaje.</label>
+    <!-- PREGUNTAS -->
+    <form id="quiz">
+      <!-- 1 -->
+      <div class="q" data-answer="b">
+        <h3>1️⃣ ¿Cuál es el propósito principal de la evaluación del progreso en el Aprendizaje?</h3>
+        <label><input type="radio" name="q1" value="a"> Calificar los productos finales del estudiante.</label>
+        <label><input type="radio" name="q1" value="b"> Analizar y mejorar el proceso de aprendizaje continuamente.</label>
+        <label><input type="radio" name="q1" value="c"> Medir solo el conocimiento teórico del estudiante.</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P2 -->
-    <div class="q" data-correct="c" data-explain="Los objetivos SMART permiten claridad en lo que se espera lograr y facilitan el seguimiento.">
-      <h3>2) ¿Qué característica define a los objetivos SMART en la planificación del aprendizaje?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q2" value="a"> Son vagos y generales.</label>
-        <label><input type="radio" name="q2" value="b"> No necesitan ser medibles.</label>
-        <label><input type="radio" name="q2" value="c"> Son específicos, medibles, alcanzables, relevantes y temporizados.</label>
-        <label><input type="radio" name="q2" value="d"> Se enfocan únicamente en memorizar información.</label>
+      <!-- 2 -->
+      <div class="q" data-answer="c">
+        <h3>2️⃣ Una evaluación formativa se caracteriza por:</h3>
+        <label><input type="radio" name="q2" value="a"> Realizarse únicamente al final del curso.</label>
+        <label><input type="radio" name="q2" value="b"> Ser cuantitativa y centrada en la nota.</label>
+        <label><input type="radio" name="q2" value="c"> Acompañar el proceso de aprendizaje para mejorar.</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P3 -->
-    <div class="q" data-correct="a" data-explain="El diagnóstico inicial permite identificar fortalezas y debilidades antes de empezar a planificar.">
-      <h3>3) ¿Cuál es el propósito del diagnóstico inicial?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q3" value="a"> Conocer fortalezas y debilidades para orientar el aprendizaje.</label>
-        <label><input type="radio" name="q3" value="b"> Repetir el mismo plan de otro estudiante.</label>
-        <label><input type="radio" name="q3" value="c"> Memorizar sin comprender.</label>
-        <label><input type="radio" name="q3" value="d"> Evitar la autoevaluación.</label>
+      <!-- 3 -->
+      <div class="q" data-answer="falso">
+        <h3>3️⃣ (V/F) La evaluación del progreso solo debe realizarla el docente.</h3>
+        <label><input type="radio" name="q3" value="verdadero"> Verdadero</label>
+        <label><input type="radio" name="q3" value="falso"> Falso</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P4 -->
-    <div class="q" data-correct="d" data-explain="Un plan individual debe incluir objetivos, estrategias, recursos, cronograma y evaluación.">
-      <h3>4) ¿Qué debe incluir un plan individual de aprendizaje?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q4" value="a"> Solo un cronograma de tareas.</label>
-        <label><input type="radio" name="q4" value="b"> Exclusivamente una lista de recursos digitales.</label>
-        <label><input type="radio" name="q4" value="c"> Únicamente técnicas de memorización.</label>
-        <label><input type="radio" name="q4" value="d"> Objetivos claros, estrategias, recursos, cronograma y criterios de evaluación.</label>
+      <!-- 4 -->
+      <div class="q" data-answer="a">
+        <h3>4️⃣ ¿Cuál de las siguientes estrategias fomenta la autorreflexión?</h3>
+        <label><input type="radio" name="q4" value="a"> Diario de progreso.</label>
+        <label><input type="radio" name="q4" value="b"> Examen final.</label>
+        <label><input type="radio" name="q4" value="c"> Evaluación numérica estandarizada.</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P5 -->
-    <div class="q" data-correct="b" data-explain="La gestión del tiempo incluye técnicas como agendas, listas de tareas y calendarios.">
-      <h3>5) ¿Cuál es una estrategia clave para la gestión del tiempo en el aprendizaje?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q5" value="a"> Estudiar sin horarios definidos.</label>
-        <label><input type="radio" name="q5" value="b"> Usar agendas, calendarios y recordatorios.</label>
-        <label><input type="radio" name="q5" value="c"> Procrastinar actividades importantes.</label>
-        <label><input type="radio" name="q5" value="d"> Evitar organizarse para mantener flexibilidad total.</label>
+      <!-- 5 -->
+      <div class="q" data-answer="b">
+        <h3>5️⃣ ¿Qué significa una evaluación continua?</h3>
+        <label><input type="radio" name="q5" value="a"> Que se hace solo al inicio del proceso.</label>
+        <label><input type="radio" name="q5" value="b"> Que se realiza regularmente para acompañar el aprendizaje.</label>
+        <label><input type="radio" name="q5" value="c"> Que mide únicamente la participación.</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P6 -->
-    <div class="q" data-correct="c" data-explain="La priorización de tareas permite enfocarse en lo importante y urgente, evitando la procrastinación.">
-      <h3>6) ¿Qué permite la priorización de tareas?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q6" value="a"> Postergar las tareas más importantes.</label>
-        <label><input type="radio" name="q6" value="b"> Evitar organizar actividades.</label>
-        <label><input type="radio" name="q6" value="c"> Enfocarse en lo más relevante y urgente.</label>
-        <label><input type="radio" name="q6" value="d"> Delegar todas las tareas al docente.</label>
+      <!-- 6 -->
+      <div class="q" data-answer="a">
+        <h3>6️⃣ (V/F) Una buena evaluación del progreso debe incluir aspectos cognitivos, habilidades y valores.</h3>
+        <label><input type="radio" name="q6" value="a"> Verdadero</label>
+        <label><input type="radio" name="q6" value="b"> Falso</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P7 -->
-    <div class="q" data-correct="a" data-explain="Seleccionar los recursos educativos adecuados hace el aprendizaje más eficiente y efectivo.">
-      <h3>7) ¿Por qué es importante seleccionar recursos educativos adecuados?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q7" value="a"> Porque facilita un aprendizaje más eficiente y efectivo.</label>
-        <label><input type="radio" name="q7" value="b"> Porque evita el uso de diferentes fuentes de información.</label>
-        <label><input type="radio" name="q7" value="c"> Para no tener que planificar.</label>
-        <label><input type="radio" name="q7" value="d"> Para depender únicamente del internet.</label>
+      <!-- 7 -->
+      <div class="q" data-answer="c">
+        <h3>7️⃣ ¿Qué herramienta permite al estudiante ver su evolución a lo largo del tiempo?</h3>
+        <label><input type="radio" name="q7" value="a"> Prueba objetiva.</label>
+        <label><input type="radio" name="q7" value="b"> Lista de chequeo.</label>
+        <label><input type="radio" name="q7" value="c"> Portafolio de evidencias.</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P8 -->
-    <div class="q" data-correct="d" data-explain="Un ambiente de estudio óptimo debe estar libre de distracciones y tener los recursos necesarios.">
-      <h3>8) ¿Qué característica debe tener un ambiente de aprendizaje óptimo?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q8" value="a"> Tener distracciones como televisión y redes sociales.</label>
-        <label><input type="radio" name="q8" value="b"> Estar desorganizado para estimular la creatividad.</label>
-        <label><input type="radio" name="q8" value="c"> No disponer de recursos necesarios.</label>
-        <label><input type="radio" name="q8" value="d"> Estar libre de distracciones y contar con recursos adecuados.</label>
+      <!-- 8 -->
+      <div class="q" data-answer="b">
+        <h3>8️⃣ La autoevaluación promueve principalmente:</h3>
+        <label><input type="radio" name="q8" value="a"> La competencia entre compañeros.</label>
+        <label><input type="radio" name="q8" value="b"> La autorregulación y la autonomía.</label>
+        <label><input type="radio" name="q8" value="c"> La memorización de contenidos.</label>
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P9 -->
-    <div class="q" data-correct="b" data-explain="El monitoreo permite evaluar avances y realizar ajustes en el proceso de aprendizaje.">
-      <h3>9) ¿Cuál es el objetivo del seguimiento y monitoreo en la planificación?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q9" value="a"> Evitar hacer cambios en el plan.</label>
-        <label><input type="radio" name="q9" value="b"> Evaluar avances y ajustar estrategias según el progreso.</label>
-        <label><input type="radio" name="q9" value="c"> Memorizar los objetivos sin analizarlos.</label>
-        <label><input type="radio" name="q9" value="d"> Ignorar los resultados obtenidos.</label>
+      <!-- 9 -->
+      <div class="q" data-answer="respuesta">
+        <h3>9️⃣ Escribe una característica esencial de una buena evaluación del progreso:</h3>
+        <input type="text" name="q9" placeholder="Escribe tu respuesta...">
       </div>
-      <div class="feedback"></div>
-    </div>
 
-    <!-- P10 -->
-    <div class="q" data-correct="c" data-explain="La planificación es clave en programas técnicos porque permite adaptarse a los cambios rápidos en la tecnología.">
-      <h3>10) ¿Por qué es importante la planificación del aprendizaje en contextos técnicos como la programación web?</h3>
-      <div class="opts">
-        <label><input type="radio" name="q10" value="a"> Porque el conocimiento tecnológico no cambia con frecuencia.</label>
-        <label><input type="radio" name="q10" value="b"> Porque evita el uso de nuevas herramientas.</label>
-        <label><input type="radio" name="q10" value="c"> Porque permite adaptarse a los cambios rápidos en lenguajes y herramientas.</label>
-        <label><input type="radio" name="q10" value="d"> Porque elimina la necesidad de planificar proyectos.</label>
+      <!-- 10 -->
+      <div class="q" data-answer="respuesta">
+        <h3>🔟 Menciona una estrategia que podrías usar para evaluar tu propio aprendizaje.</h3>
+        <input type="text" name="q10" placeholder="Ejemplo: diario reflexivo, rúbrica, etc.">
       </div>
-      <div class="feedback"></div>
-    </div>
+    </form>
 
-    <!-- Botón -->
-    <div class="actions">
-      <button onclick="calificar()">Calificar</button>
-    </div>
+    <button id="checkBtn">Calificar</button>
+    <button class="secondary" id="resetBtn">Reiniciar</button>
 
+    <div id="result"></div>
+    <div class="feedback" id="feedback"></div>
   </div>
+</div>
 
-  <script>
-    function calificar() {
-      let preguntas = document.querySelectorAll('.q');
-      let score = 0;
-
-      preguntas.forEach((p, i) => {
-        let correcta = p.getAttribute('data-correct');
-        let explicacion = p.getAttribute('data-explain');
-        let seleccionada = p.querySelector('input[type=radio]:checked');
-        let feedback = p.querySelector('.feedback');
-
-        if (seleccionada) {
-          if (seleccionada.value === correcta) {
-            feedback.textContent = "✔ Correcto. " + explicacion;
-            feedback.className = "feedback correct";
-            score++;
-          } else {
-            feedback.textContent = "✘ Incorrecto. " + explicacion;
-            feedback.className = "feedback incorrect";
-          }
-        } else {
-          feedback.textContent = "✘ No respondiste esta pregunta. " + explicacion;
-          feedback.className = "feedback incorrect";
-        }
-      });
-
-      alert("Tu puntuación final es: " + score + "/" + preguntas.length);
+<script>
+document.getElementById('checkBtn').addEventListener('click',()=>{
+  const qs=document.querySelectorAll('.q');
+  let correct=0, total=qs.length;
+  qs.forEach(q=>{
+    const ans=q.dataset.answer;
+    const name=q.querySelector('input')?.name;
+    const selected=document.querySelector(`input[name="${name}"]:checked`);
+    if(ans==="respuesta"){
+      const text=q.querySelector('input[type="text"]').value.trim();
+      if(text.length>3) correct+=0.5; // medio punto por respuestas abiertas
+    } else if(selected && selected.value===ans){
+      correct++;
     }
-  </script>
+  });
+
+  const pct=Math.round((correct/total)*100);
+  const fb=document.getElementById('feedback');
+  const res=document.getElementById('result');
+  res.textContent=`Puntuación: ${correct.toFixed(1)} / ${total} (${pct}%)`;
+
+  if(pct>=90){fb.textContent="🌟 ¡Excelente! Dominas muy bien el tema.";}
+  else if(pct>=70){fb.textContent="👍 Buen trabajo, aunque podrías reforzar algunos conceptos.";}
+  else{fb.textContent="📘 Revisa nuevamente el tema para fortalecer tu comprensión.";}
+
+  fb.style.display='block';
+});
+
+document.getElementById('resetBtn').addEventListener('click',()=>{
+  document.getElementById('quiz').reset();
+  document.getElementById('result').textContent='';
+  document.getElementById('feedback').style.display='none';
+});
+</script>
 </body>
 </html>
