@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Actividad: Pensamiento Crítico (Interactividad Mixta)</title>
+  <style>
+    :root{
+      --bg:#f6f8fb; --card:#ffffff; --ink:#0f1724; --muted:#556077;
+      --accent:#2563eb; --good:#059669; --bad:#dc2626;
+    }
+    body{
+      margin:0; font-family:Inter, system-ui, Arial;
+      background:linear-gradient(180deg,#f8fbff 0%, #f6f8fb 100%);
+      color:var(--ink); padding:24px;
+    }
+    .container{max-width:950px; margin:0 auto;}
+    .card{background:var(--card); border:1px solid #e6eefc; border-radius:14px; padding:22px; box-shadow:0 10px 30px rgba(15,23,42,.06);}
+    h1{font-size:22px; color:var(--accent); margin:0 0 10px;}
+    .lead{color:var(--muted); font-size:14px; margin-bottom:20px;}
+    .q{margin-bottom:22px;}
+    .q h3{font-size:15px; margin-bottom:10px;}
+    .dropzone{
+      min-height:40px; border:2px dashed #cbd5e1; border-radius:8px; padding:8px;
+      display:flex; align-items:center; justify-content:center; background:#f9fafb; margin-bottom:10px;
+    }
+    .dropzone.filled{border-style:solid; background:#ecfdf5; border-color:#86efac;}
+    .option{
+      display:inline-block; background:#fff; border:1px solid #dbeafe; padding:8px 12px;
+      border-radius:8px; margin:4px; cursor:grab; transition:all .15s ease;
+    }
+    .option:active{cursor:grabbing;}
+    .feedback{margin-top:6px; font-size:14px; display:none;}
+    .feedback.ok{color:var(--good); display:block;}
+    .feedback.bad{color:var(--bad); display:block;}
+    input[type="text"]{padding:6px; border-radius:6px; border:1px solid #cbd5e1; width:250px;}
+    .fv-options label{display:block; margin:4px 0;}
+    .controls{margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;}
+    button{padding:10px 14px; border:none; border-radius:8px; cursor:pointer; font-weight:700; color:#fff; background:var(--accent);}
+    button.secondary{background:#e2e8f0; color:var(--ink);}
+    #result{font-weight:800; margin-left:auto;}
+    iframe{width:100%; height:320px; border:none; border-radius:8px; margin-bottom:20px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Actividad Interactiva: Pensamiento Crítico</h1>
+      <div class="lead">
+        Observa el siguiente video antes de responder:  
+        <br><a href="https://www.youtube.com/watch?v=92u6ibginyk" target="_blank">Haz clic aquí para ver el video del pensamiento crítico</a>
+      </div>
+
+      <!-- Video integrado -->
+      <iframe src="https://www.youtube.com/embed/92u6ibginyk" allowfullscreen></iframe>
+
+      <!-- PREGUNTAS DE ARRASTRAR Y SOLTAR -->
+      <div class="q" data-type="drag" data-answer="Analizar">
+        <h3>1) El pensamiento crítico es la capacidad de _______ y evaluar la información de manera lógica y reflexiva.</h3>
+        <div class="dropzone"></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-type="drag" data-answer="Claridad">
+        <h3>2) Característica del pensamiento crítico que consiste en expresar las ideas con precisión y sin confusiones.</h3>
+        <div class="dropzone"></div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-type="drag" data-answer="Autonomía">
+        <h3>3) Capacidad de desarrollar ideas propias sin depender ciegamente de la autoridad o la mayoría.</h3>
+        <div class="dropzone"></div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- PREGUNTAS DE COMPLETAR -->
+      <div class="q" data-type="fill" data-answer="razonada">
+        <h3>4) El pensamiento crítico implica analizar la información de forma lógica, reflexiva y _______.</h3>
+        <input type="text" placeholder="Escribe tu respuesta aquí" />
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-type="fill" data-answer="evidencias">
+        <h3>5) Un pensador crítico siempre busca _______ que respalden sus conclusiones.</h3>
+        <input type="text" placeholder="Escribe tu respuesta aquí" />
+        <div class="feedback"></div>
+      </div>
+
+      <!-- PREGUNTAS FALSO O VERDADERO -->
+      <div class="q" data-type="fv" data-answer="F">
+        <h3>6) El pensamiento crítico consiste solo en memorizar datos sin cuestionar su origen.</h3>
+        <div class="fv-options">
+          <label><input type="radio" name="q6" value="V"> Verdadero</label>
+          <label><input type="radio" name="q6" value="F"> Falso</label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-type="fv" data-answer="V">
+        <h3>7) Evaluar la credibilidad de las fuentes es una parte esencial del pensamiento crítico.</h3>
+        <div class="fv-options">
+          <label><input type="radio" name="q7" value="V"> Verdadero</label>
+          <label><input type="radio" name="q7" value="F"> Falso</label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-type="fv" data-answer="V">
+        <h3>8) Reflexionar sobre lo que se aprendió y cómo se puede mejorar forma parte del pensamiento reflexivo.</h3>
+        <div class="fv-options">
+          <label><input type="radio" name="q8" value="V"> Verdadero</label>
+          <label><input type="radio" name="q8" value="F"> Falso</label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- PREGUNTAS DE APLICACIÓN / REFLEXIÓN -->
+      <div class="q" data-type="fill" data-answer="decisiones informadas">
+        <h3>9) El pensamiento crítico facilita la toma de _______ basadas en argumentos sólidos.</h3>
+        <input type="text" placeholder="Escribe tu respuesta aquí" />
+        <div class="feedback"></div>
+      </div>
+
+      <div class="q" data-type="drag" data-answer="Justicia">
+        <h3>10) Valorar diferentes puntos de vista sin prejuicios corresponde al principio de _______.</h3>
+        <div class="dropzone"></div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- OPCIONES DISPONIBLES -->
+      <div id="options">
+        <div class="option" draggable="true">Analizar</div>
+        <div class="option" draggable="true">Claridad</div>
+        <div class="option" draggable="true">Autonomía</div>
+        <div class="option" draggable="true">Justicia</div>
+      </div>
+
+      <!-- CONTROLES -->
+      <div class="controls">
+        <button id="checkBtn">Calificar</button>
+        <button class="secondary" id="resetBtn">Reiniciar</button>
+        <div id="result"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let dragged = null;
+
+    // Drag & Drop
+    function initDrag() {
+      const options = document.querySelectorAll('.option');
+      const dropzones = document.querySelectorAll('.dropzone');
+      options.forEach(opt=>{
+        opt.addEventListener('dragstart', e=>{
+          dragged = opt;
+          setTimeout(()=> opt.style.display='none',0);
+        });
+        opt.addEventListener('dragend', e=>{
+          dragged.style.display='inline-block';
+          dragged = null;
+        });
+      });
+      dropzones.forEach(zone=>{
+        zone.addEventListener('dragover', e=> e.preventDefault());
+        zone.addEventListener('drop', e=>{
+          e.preventDefault();
+          if(zone.children.length===0 && dragged){
+            zone.appendChild(dragged);
+            zone.classList.add('filled');
+          }
+        });
+      });
+    }
+    initDrag();
+
+    // Calificación
+    document.getElementById('checkBtn').addEventListener('click', ()=>{
+      const qs=document.querySelectorAll('.q');
+      let correct=0;
+      qs.forEach((q,i)=>{
+        const type=q.dataset.type;
+        const ans=q.dataset.answer.trim().toLowerCase();
+        const fb=q.querySelector('.feedback');
+        fb.classList.remove('ok','bad');
+        fb.style.display='none';
+        let user='';
+        if(type==='drag'){
+          const dropped=q.querySelector('.dropzone .option');
+          if(dropped) user=dropped.textContent.trim().toLowerCase();
+        }
+        else if(type==='fill'){
+          const input=q.querySelector('input');
+          if(input) user=input.value.trim().toLowerCase();
+        }
+        else if(type==='fv'){
+          const selected=q.querySelector('input[type="radio"]:checked');
+          if(selected) user=selected.value.trim().toLowerCase();
+        }
+
+        if(user===ans){
+          fb.textContent='✅ Correcto'; fb.classList.add('ok'); correct++;
+        }else{
+          fb.textContent='❌ Incorrecto. Respuesta correcta: '+q.dataset.answer;
+          fb.classList.add('bad');
+        }
+        fb.style.display='block';
+      });
+
+      const total=qs.length;
+      const pct=Math.round((correct/total)*100);
+      const result=document.getElementById('result');
+      result.textContent=`Puntuación: ${correct}/${total} — ${pct}%`;
+    });
+
+    // Reiniciar
+    document.getElementById('resetBtn').addEventListener('click', ()=>{
+      document.querySelectorAll('.dropzone').forEach(z=>{z.innerHTML=''; z.classList.remove('filled');});
+      document.querySelectorAll('input[type="text"]').forEach(i=> i.value='');
+      document.querySelectorAll('input[type="radio"]').forEach(r=> r.checked=false);
+      document.querySelectorAll('.feedback').forEach(f=>{f.textContent=''; f.style.display='none';});
+      document.getElementById('result').textContent='';
+      document.getElementById('options').innerHTML=
+        '<div class="option" draggable="true">Analizar</div>'+
+        '<div class="option" draggable="true">Claridad</div>'+
+        '<div class="option" draggable="true">Autonomía</div>'+
+        '<div class="option" draggable="true">Justicia</div>';
+      initDrag();
+    });
+  </script>
+</body>
+</html>
