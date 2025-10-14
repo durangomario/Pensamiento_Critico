@@ -41,12 +41,18 @@
   }
   .correct { color: green; }
   .incorrect { color: red; }
+  #final-score {
+    text-align: center;
+    font-size: 1.3em;
+    margin-top: 25px;
+    font-weight: bold;
+  }
 </style>
 </head>
 <body>
 
 <h1>Evaluación: La Autoevaluación en el Aprendizaje Autónomo</h1>
-<p><strong>Instrucciones:</strong> Responde las siguientes preguntas. Al finalizar cada una, recibirás retroalimentación inmediata.</p>
+<p><strong>Instrucciones:</strong> Responde las siguientes preguntas y al final presiona <strong>“Calcular calificación”</strong> para conocer tu resultado.</p>
 
 <div id="quiz">
 
@@ -55,7 +61,6 @@
     <p>1. (Verdadero/Falso) La autoevaluación es una evaluación realizada por un docente externo.</p>
     <input type="radio" name="q1" value="F"> Falso<br>
     <input type="radio" name="q1" value="V"> Verdadero<br>
-    <button onclick="checkAnswer('q1', 'F', 'Correcto: la autoevaluación la realiza el propio estudiante, no el docente.')">Verificar</button>
     <div id="feedback-q1" class="feedback"></div>
   </div>
 
@@ -66,15 +71,13 @@
     <input type="radio" name="q2" value="b"> Comparar lo logrado con lo esperado<br>
     <input type="radio" name="q2" value="c"> Depender exclusivamente de la opinión del docente<br>
     <input type="radio" name="q2" value="d"> Plantearse acciones para mejorar<br>
-    <button onclick="checkAnswer('q2', 'c', 'Correcto: depender del docente anula la autonomía del estudiante.')">Verificar</button>
     <div id="feedback-q2" class="feedback"></div>
   </div>
 
   <!-- Pregunta 3 -->
   <div class="question">
     <p>3. (Respuesta corta) Define con tus palabras qué significa “metacognición”.</p>
-    <textarea id="q3" rows="3" cols="50" placeholder="Escribe tu respuesta aquí..."></textarea><br>
-    <button onclick="textFeedback('q3','La metacognición es la capacidad de pensar sobre el propio pensamiento y aprendizaje.')">Ver retroalimentación</button>
+    <textarea id="q3" rows="3" cols="50" placeholder="Escribe tu respuesta aquí..."></textarea>
     <div id="feedback-q3" class="feedback"></div>
   </div>
 
@@ -83,7 +86,6 @@
     <p>4. (Verdadero/Falso) La autoevaluación solo es útil en exámenes escritos.</p>
     <input type="radio" name="q4" value="V"> Verdadero<br>
     <input type="radio" name="q4" value="F"> Falso<br>
-    <button onclick="checkAnswer('q4', 'F', 'Correcto: la autoevaluación también se aplica en proyectos, presentaciones y prácticas.')">Verificar</button>
     <div id="feedback-q4" class="feedback"></div>
   </div>
 
@@ -93,15 +95,13 @@
     <input type="radio" name="q5" value="a"> Rúbrica de desempeño<br>
     <input type="radio" name="q5" value="b"> Opiniones sin criterio<br>
     <input type="radio" name="q5" value="c"> Copiar la evaluación de otro estudiante<br>
-    <button onclick="checkAnswer('q5', 'a', 'Correcto: una rúbrica permite comparar el desempeño con criterios definidos.')">Verificar</button>
     <div id="feedback-q5" class="feedback"></div>
   </div>
 
   <!-- Pregunta 6 -->
   <div class="question">
     <p>6. (Respuesta corta) Menciona dos beneficios de practicar la autoevaluación regularmente.</p>
-    <textarea id="q6" rows="3" cols="50"></textarea><br>
-    <button onclick="textFeedback('q6','Favorece la autorreflexión y la mejora continua del aprendizaje.')">Ver retroalimentación</button>
+    <textarea id="q6" rows="3" cols="50"></textarea>
     <div id="feedback-q6" class="feedback"></div>
   </div>
 
@@ -111,7 +111,6 @@
     <input type="radio" name="q7" value="a"> Conformismo<br>
     <input type="radio" name="q7" value="b"> Repetir errores<br>
     <input type="radio" name="q7" value="c"> Establecer nuevas metas<br>
-    <button onclick="checkAnswer('q7', 'c', 'Correcto: la autoevaluación impulsa el establecimiento de metas para mejorar.')">Verificar</button>
     <div id="feedback-q7" class="feedback"></div>
   </div>
 
@@ -120,15 +119,13 @@
     <p>8. (Verdadero/Falso) Debemos ser muy exigentes y no aceptar fallas en la autoevaluación.</p>
     <input type="radio" name="q8" value="V"> Verdadero<br>
     <input type="radio" name="q8" value="F"> Falso<br>
-    <button onclick="checkAnswer('q8', 'F', 'Correcto: la autoevaluación requiere equilibrio, aceptación y aprendizaje del error.')">Verificar</button>
     <div id="feedback-q8" class="feedback"></div>
   </div>
 
   <!-- Pregunta 9 -->
   <div class="question">
     <p>9. (Respuesta corta) ¿Qué papel juega la autorregulación en la autoevaluación?</p>
-    <textarea id="q9" rows="3" cols="50"></textarea><br>
-    <button onclick="textFeedback('q9','La autorregulación permite controlar y ajustar las propias estrategias de aprendizaje.')">Ver retroalimentación</button>
+    <textarea id="q9" rows="3" cols="50"></textarea>
     <div id="feedback-q9" class="feedback"></div>
   </div>
 
@@ -138,34 +135,81 @@
     <input type="radio" name="q10" value="a"> Negar los errores<br>
     <input type="radio" name="q10" value="b"> Ser deshonesto<br>
     <input type="radio" name="q10" value="c"> Tener humildad y responsabilidad<br>
-    <button onclick="checkAnswer('q10', 'c', 'Correcto: la honestidad y responsabilidad fortalecen la autoevaluación.')">Verificar</button>
     <div id="feedback-q10" class="feedback"></div>
   </div>
+
+  <button onclick="calcularPuntaje()">Calcular calificación</button>
+  <div id="final-score"></div>
 
 </div>
 
 <script>
-function checkAnswer(questionName, correctValue, feedbackText) {
-  const selected = document.querySelector('input[name="'+questionName+'"]:checked');
-  const feedbackDiv = document.getElementById('feedback-' + questionName);
-  if (!selected) {
-    feedbackDiv.innerHTML = "Por favor selecciona una respuesta.";
-    feedbackDiv.className = "feedback incorrect";
-  } else if (selected.value === correctValue) {
-    feedbackDiv.innerHTML = feedbackText;
-    feedbackDiv.className = "feedback correct";
-  } else {
-    feedbackDiv.innerHTML = "Incorrecto. Revisa tus apuntes y vuelve a intentarlo.";
-    feedbackDiv.className = "feedback incorrect";
-  }
-}
+function calcularPuntaje() {
+  let score = 0;
+  let total = 10;
 
-function textFeedback(id, feedbackText) {
-  const feedbackDiv = document.getElementById('feedback-' + id);
-  feedbackDiv.innerHTML = feedbackText;
-  feedbackDiv.className = "feedback correct";
+  const respuestas = {
+    q1: 'F',
+    q2: 'c',
+    q4: 'F',
+    q5: 'a',
+    q7: 'c',
+    q8: 'F',
+    q10: 'c'
+  };
+
+  // Preguntas cerradas
+  for (const [key, value] of Object.entries(respuestas)) {
+    const seleccion = document.querySelector(`input[name="${key}"]:checked`);
+    const feedback = document.getElementById(`feedback-${key}`);
+    if (seleccion) {
+      if (seleccion.value === value) {
+        feedback.innerHTML = "✅ Correcto";
+        feedback.className = "feedback correct";
+        score++;
+      } else {
+        feedback.innerHTML = "❌ Incorrecto";
+        feedback.className = "feedback incorrect";
+      }
+    } else {
+      feedback.innerHTML = "⚠️ No respondiste esta pregunta.";
+      feedback.className = "feedback incorrect";
+    }
+  }
+
+  // Preguntas abiertas (3, 6, 9)
+  const abiertas = ['q3','q6','q9'];
+  abiertas.forEach(id => {
+    const texto = document.getElementById(id).value.trim();
+    const feedback = document.getElementById(`feedback-${id}`);
+    if (texto.length > 15) {
+      feedback.innerHTML = "✅ Buena respuesta reflexiva.";
+      feedback.className = "feedback correct";
+      score++;
+    } else if (texto.length > 0) {
+      feedback.innerHTML = "⚠️ Incompleto. Amplía tu respuesta.";
+      feedback.className = "feedback incorrect";
+      score += 0.5;
+    } else {
+      feedback.innerHTML = "❌ No respondiste.";
+      feedback.className = "feedback incorrect";
+    }
+  });
+
+  // Calificación final
+  let calificacion = (score / total) * 10;
+  calificacion = calificacion.toFixed(1);
+
+  let mensaje = "";
+  if (calificacion >= 9) mensaje = "🌟 Excelente desempeño.";
+  else if (calificacion >= 7) mensaje = "👍 Buen trabajo, puedes seguir mejorando.";
+  else mensaje = "📘 Debes repasar el tema y volver a intentarlo.";
+
+  document.getElementById("final-score").innerHTML =
+    `Tu calificación final es: <strong>${calificacion}/10</strong><br>${mensaje}`;
 }
 </script>
 
 </body>
 </html>
+
